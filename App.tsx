@@ -1,118 +1,72 @@
 /**
  * Sample React Native App
- * https://github.com/facebook/react-native
  *
  * @format
  */
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+import React, { useState } from 'react';
+import { atom, useAtom } from 'jotai';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
+  Button,
   StyleSheet,
   Text,
-  useColorScheme,
-  View,
+  TouchableOpacity,
+  View
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const counter = atom(0);
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+const Word = () => {
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+  const [count, setCounter] = useAtom(counter);
+  const onAdd = () => setCounter(prev => {
+    if (prev >= 10) return 0;
+    return prev + 1;
+  });
+  const onMinus = () => setCounter(prev => {
+    if (prev <= -10) return 0;
+    return prev - 1;
+  });
+  const onReset = () => setCounter(prev => 0);
+
+  const styles = StyleSheet.create({
+    viewRoot: {
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flex: 1
+    },
+    view: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    button: {
+      backgroundColor: 'skyblue', // 버튼 배경색상 추가
+      borderRadius: 4,
+      padding: 10
+    },
+    text: {
+      fontSize: 24,
+      paddingHorizontal: 20
+    },
+    buttonText: {
+      fontSize: 18
+    }
+  });
+
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+    <View style={styles.viewRoot}>
+      <View style={styles.view}>
+        <TouchableOpacity style={styles.button} onPress={onMinus}><Text style={styles.buttonText}>-</Text></TouchableOpacity>
+        <Text style={styles.text}>{count}</Text>
+        <TouchableOpacity style={styles.button} onPress={onAdd}><Text style={styles.buttonText}>+</Text></TouchableOpacity>
+      </View>
+      <View style={styles.view}>
+        <TouchableOpacity style={styles.button} onPress={onReset}><Text style={styles.buttonText}>Reset</Text></TouchableOpacity>
+      </View>
     </View>
   );
-}
+};
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
+export default Word;
