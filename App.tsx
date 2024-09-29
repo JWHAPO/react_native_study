@@ -13,17 +13,36 @@ import {
 } from 'react-native';
 
 import CommonInputBox from './scr/components/molecules/CommonInputBox';
+import BottomButton from './scr/components/atoms/BottomButton';
+
+import Alphabet from './scr/components/atoms/\bAlphabetText';
 
 
 const Word = () => {
+  const [text1, setText1] = useState('');
+  const [text2, setText2] = useState('');
+  const [text3, setText3] = useState('');
   return (
-    <View style={{
-      flexDirection: 'column',
-      flex: 1
-    }}>
-      <CommonInputBox hint='이름을 입력하세요.' labelName='이름' />
-      <CommonInputBox hint='나이을 입력하세요.' labelName='나이' />
-      <CommonInputBox hint='취미을 입력하세요.' labelName='취미' />
+    <View >
+      <CommonInputBox hint='이름을 입력하세요.' labelName='이름' inputValue={text1} inputChange={(text) => {
+        setText1(text);
+      }}  />
+      <CommonInputBox hint='나이을 입력하세요.' labelName='나이' inputValue={text2} inputChange={(text) => {
+        setText2(text);
+      }} />
+      <CommonInputBox hint='취미를 입력하세요.' labelName='취미' inputValue={text3} inputChange={(text) => {
+        setText3(text);
+      }} />
+      <BottomButton title='저장' onPress={()=>{
+          console.log(text1+","+text2+","+text3);
+          setText1('');
+          setText2('');
+          setText3('');
+      }} />
+      <Alphabet color='gray' name={text1} />
+      <Alphabet color='orange' name={text2} />
+      <Alphabet color='blue' name={text3} />
+      
     </View>
   );
 };

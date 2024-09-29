@@ -4,11 +4,10 @@ import { View, TextInput, StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: 8,
-        paddingTop: 8,
-        flex: 1
+        paddingTop: 8
     },
     input: {
-        borderColor: 'pink',
+        borderColor: '#bdbdbd',
         borderWidth: 1,
         borderRadius: 2,
         paddingHorizontal: 8
@@ -16,21 +15,18 @@ const styles = StyleSheet.create({
 });
 
 type InputProps = {
-    hint: string;
+    hint: string,
+    inputValue: string,
+    inputChange: (text1: string) => void;
   };
 
 const CommonInput = (props: InputProps) => {
-    const [text, setText] = useState('');
-
-    const onChangeText = (inputText: string) => {
-        setText(inputText);
-    }
 
     return (
         <View style={styles.container}>
             <TextInput
-                onChangeText={onChangeText}
-                value={text}
+                onChangeText={props.inputChange}
+                value={props.inputValue}
                 placeholder={props.hint}
                 style={styles.input}
             />
