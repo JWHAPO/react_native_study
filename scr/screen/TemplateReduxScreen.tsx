@@ -1,4 +1,4 @@
-import { UseDispatch, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setName } from "../../modules/redux/slice/TemplateUserSlice";
 import {
     Text
@@ -9,9 +9,10 @@ const TemplateReduxScreen = () => {
     const dispatch = useDispatch()
 
     const setUserInfo = () => {
-	    const result = dispatch(setName("hohoho"))
+	    const result = dispatch(setName('123'))
 	    console.log("result :: ", result)
 	}
+    setUserInfo()
     return (
         <Text>12</Text>
     )
