@@ -22,6 +22,8 @@ const Word = () => {
   const [text1, setText1] = useState('');
   const [text2, setText2] = useState('');
   const [text3, setText3] = useState('');
+  const [result, setResult] = useState('');
+
   return (
     <View >
       <CommonInputBox hint='이름을 입력하세요.' labelName='이름' inputValue={text1} inputChange={(text) => {
@@ -34,14 +36,12 @@ const Word = () => {
         setText3(text);
       }} />
       <BottomButton title='저장' onPress={()=>{
-          console.log(text1+","+text2+","+text3);
+          setResult(text1+","+text2+","+text3);
           setText1('');
           setText2('');
           setText3('');
       }} />
-      <Alphabet color='gray' name={text1} />
-      <Alphabet color='orange' name={text2} />
-      <Alphabet color='blue' name={text3} />
+      <Alphabet color='gray' name={result} />
       
     </View>
   );
