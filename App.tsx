@@ -4,7 +4,9 @@
  * @format
  */
 
-import React, { useState } from 'react';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { Persistor, Store } from './modules/redux/Store';
 import {
   NativeModules,
   Button,
@@ -12,39 +14,27 @@ import {
   View
 } from 'react-native';
 
+import TemplateReduxScreen from './scr/screen/TemplateReduxScreen';
+
 import CommonInputBox from './scr/components/molecules/CommonInputBox';
 import BottomButton from './scr/components/atoms/BottomButton';
 
 import Alphabet from './scr/components/atoms/\bAlphabetText';
 
-
-const Word = () => {
-  const [text1, setText1] = useState('');
-  const [text2, setText2] = useState('');
-  const [text3, setText3] = useState('');
-  const [result, setResult] = useState('');
+const Root = () => {
+  let text1 = '';
+  let text2 = '';
+  let text3 = '';
 
   return (
-    <View >
-      <CommonInputBox hint='이름을 입력하세요.' labelName='이름' inputValue={text1} inputChange={(text) => {
-        setText1(text);
-      }}  />
-      <CommonInputBox hint='나이을 입력하세요.' labelName='나이' inputValue={text2} inputChange={(text) => {
-        setText2(text);
-      }} />
-      <CommonInputBox hint='취미를 입력하세요.' labelName='취미' inputValue={text3} inputChange={(text) => {
-        setText3(text);
-      }} />
-      <BottomButton title='저장' onPress={()=>{
-          setResult(text1+","+text2+","+text3);
-          setText1('');
-          setText2('');
-          setText3('');
-      }} />
-      <Alphabet color='gray' name={result} />
-      
-    </View>
+    <Provider store={Store}>
+      <PersistGate persistor={Persistor}>
+        <View >
+          <TemplateReduxScreen></TemplateReduxScreen>
+        </View>
+      </PersistGate>
+    </Provider>
   );
 };
 
-export default Word;
+export default Root;
