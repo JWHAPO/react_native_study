@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import RootReducer, {RootState} from "./RootReducer";
-import { PersistConfig, persistStore, persistReducer } from "redux-persist";
+import { persistStore, persistReducer, PersistConfig } from "redux-persist";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import logger from 'redux-logger';
+import logger from "redux-logger";
 
 const persistConfig: PersistConfig<RootState> = {
     key: 'root',
@@ -12,9 +12,12 @@ const persistConfig: PersistConfig<RootState> = {
 
 export const Store = configureStore({
     reducer: persistReducer(persistConfig, RootReducer)!,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+    middleware: (getDefaultMiddleware) => 
+    getDefaultMiddleware({
+        serializableCheck: false,
+    }).concat(logger),
 });
 
 export const Persistor = persistStore(Store);
-export type AppDispatch = typeof Store.dispatch
+export type AppDispatch = typeof Store.dispatch;
 

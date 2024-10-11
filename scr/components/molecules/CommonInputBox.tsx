@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
 type InputBoxProps = {
     hint: string,
     labelName: string,
-    inputValue: string,
     inputChange: (text1: string) => void;
 };
 
@@ -25,7 +24,7 @@ const CommonInputBox = (props: InputBoxProps) => {
                 name={props.labelName}
             />
             <CommonInput
-                hint={props.hint} inputValue={props.inputValue} inputChange={props.inputChange}
+                hint={props.hint} inputChange={props.inputChange}
             />
         </View>
     );

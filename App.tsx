@@ -14,23 +14,15 @@ import {
   View
 } from 'react-native';
 
-import TemplateReduxScreen from './scr/screen/TemplateReduxScreen';
-
-import CommonInputBox from './scr/components/molecules/CommonInputBox';
-import BottomButton from './scr/components/atoms/BottomButton';
-
-import Alphabet from './scr/components/atoms/\bAlphabetText';
+import BaseScreen from './scr/screen/BaseScreen';
 
 const Root = () => {
-  let text1 = '';
-  let text2 = '';
-  let text3 = '';
 
   return (
     <Provider store={Store}>
       <PersistGate persistor={Persistor}>
         <View >
-          <TemplateReduxScreen></TemplateReduxScreen>
+          <BaseScreen></BaseScreen>
         </View>
       </PersistGate>
     </Provider>

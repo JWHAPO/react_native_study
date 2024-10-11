@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
 
 type InputProps = {
     hint: string,
-    inputValue: string,
     inputChange: (text1: string) => void;
   };
 
@@ -26,7 +25,6 @@ const CommonInput = (props: InputProps) => {
         <View style={styles.container}>
             <TextInput
                 onChangeText={props.inputChange}
-                value={props.inputValue}
                 placeholder={props.hint}
                 style={styles.input}
             />

@@ -1,10 +1,11 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import templateSlice from "./slice/TemplateSlice";
-import TemplateUserSlice from "./slice/TemplateUserSlice";
+import userSlice from "./slice/UserSlice";
+import LevelSlice from "./slice/LevelSlice";
+import UserSlice from "./slice/UserSlice";
 
 const RootReducer = combineReducers({
-    templateUser: TemplateUserSlice,
-    template: templateSlice
+    user: UserSlice,
+    level: LevelSlice
 });
 
 export type RootState = ReturnType<typeof RootReducer>;
