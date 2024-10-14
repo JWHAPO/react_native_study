@@ -14,7 +14,8 @@ import {
   View
 } from 'react-native';
 
-import BaseScreen from './scr/screen/BaseScreen';
+import BaseScreen from './scr/pages/BaseScreen';
+import SignUp from './scr/components/pages/SignUp';
 
 const Root = () => {
 
@@ -22,7 +23,7 @@ const Root = () => {
     <Provider store={Store}>
       <PersistGate persistor={Persistor}>
         <View >
-          <BaseScreen></BaseScreen>
+          <SignUp></SignUp>
         </View>
       </PersistGate>
     </Provider>

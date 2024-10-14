@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../modules/redux/slice/UserSlice";
 import { setLevel } from "../../modules/redux/slice/LevelSlice";
 import { RootState } from "../../modules/redux/RootReducer";
-import MainInput from "../components/organisms/MainInput";
+import MainInput from "../components/organisms/SignUpForm";
 import {
     Text, View
 } from 'react-native';
