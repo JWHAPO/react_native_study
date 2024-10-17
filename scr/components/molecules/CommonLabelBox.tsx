@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 });
 
 type CommonLabelBoxProps = {
-    labelName: string,
+    label: string,
     description: string,
 };
 
@@ -20,7 +20,7 @@ const CommonLabelBox = (props: CommonLabelBoxProps) => {
     return (
         <View style={styles.commonBox} >
             <CommonLabel
-                name={props.labelName}
+                name={props.label}
             />
             <Alphabet
                 name={props.description} color='#bdbdbd'
