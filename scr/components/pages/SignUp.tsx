@@ -3,13 +3,13 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from '../../../modules/redux/slice/UserSlice';
 import SignUpTemp from '../templates/SignUpTemp';
-import {  }
+import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
 
-const [name, setName] = useState('');
-const [id, setId] = useState('');
-const [pwd, setPwd] = useState('');
-const [birth, setBirth] = useState('');
-const [etc, setEtc] = useState('');
+import {
+    Alert
+} from 'react-native';
+import { RootStackParamList } from '../../../App';
 
 
 const alertMsg = (title: string, description: string) =>
@@ -17,24 +17,17 @@ const alertMsg = (title: string, description: string) =>
         { text: 'OK', onPress: () => console.log('OK Pressed') },
     ]);
 
-function validInfo() {
+const SignUp = () => {
+
+    const [name, setName] = useState('');
+    const [id, setId] = useState('');
+    const [pwd, setPwd] = useState('');
+    const [birth, setBirth] = useState('');
+    const [etc, setEtc] = useState('');
+
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
     const dispatch = useDispatch()
 
-    //위에는 valid
-
-    const result1 = dispatch(setUser({
-        id: id,
-        pwd: pwd,
-        name: name,
-        birth: birth,
-        etc: etc
-    }));
-
-    //저장되었습니다 > 로그인 페이지로 이동
-
-}
-
-const SignUp = () => {
     return (
         <SignUpTemp
             nameChange={(text) => {
@@ -53,7 +46,20 @@ const SignUp = () => {
                 setEtc(text);
             }}
             onPress={() => {
-                validInfo();
+
+                //위에는 valid
+
+                const result1 = dispatch(setUser({
+                    name: name,
+                    id: id,
+                    birth: birth,
+                    pwd: pwd,
+                    etc: etc
+                }));
+
+                //저장되었습니다 > 로그인 페이지로 이동
+
+                navigation.navigate('SignIn');
             }}
         />
     )

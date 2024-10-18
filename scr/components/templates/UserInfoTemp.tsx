@@ -25,7 +25,7 @@ const UserInfoTemp = (props: UserInfoProps) => {
     return (
         <View style={styles.container} >
             <TitleLabel label='유저정보' />
-            <CommonImage url='https://reactnative.dev/img/tiny_logo.png' />
+            <CommonImage url='https://e7.pngegg.com/pngimages/636/141/png-clipart-computer-icons-user-s-included-miscellaneous-user-profile.png' />
             <UserInfoForm
                 id={props.id}
                 name={props.name}

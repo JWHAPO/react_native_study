@@ -26,7 +26,7 @@ const SignUpTemp = (props: SignUpProps) => {
     return (
         <View style = {styles.container} >
             <TitleLabel label='회원가입'/>
-            <CommonImage url='https://reactnative.dev/img/tiny_logo.png' />
+            <CommonImage url='https://e7.pngegg.com/pngimages/198/657/png-clipart-yocale-logo-business-cards-sales-others-miscellaneous-service.png' />
             <SignUpForm 
                 nameChange={props.nameChange}
                 idChange={props.idChange}

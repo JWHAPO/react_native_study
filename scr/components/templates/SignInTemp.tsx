@@ -16,18 +16,20 @@ const styles = StyleSheet.create({
 type SignUpProps = {
     idChange: (text: string) => void,
     pwdChange: (text: string) => void,
-    onPress: () => void,
+    onLogin: () => void,
+    onSignUp: () => void,
 };
 
 const SignInTemp = (props: SignUpProps) => {
     return (
         <View style = {styles.container} >
             <TitleLabel label='로그인'/>
-            <CommonImage url='https://reactnative.dev/img/tiny_logo.png' />
+            <CommonImage url='https://png.pngtree.com/png-vector/20191003/ourmid/pngtree-user-login-or-authenticate-icon-on-gray-background-flat-icon-ve-png-image_1786166.jpg' />
             <SignInForm 
                 idChange={props.idChange}
                 pwdChange={props.pwdChange}
-                onPress={props.onPress}
+                onLogin={props.onLogin}
+                onSignUp={props.onSignUp}
             />
         </View>
     )

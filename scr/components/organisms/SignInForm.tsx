@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
 type SignInFormProps = {
     idChange: (text: string) => void,
     pwdChange: (text: string) => void,
-    onPress: () => void,
+    onLogin: () => void,
+    onSignUp: () => void,
 };
 
 const SignInForm = (props: SignInFormProps) => {
@@ -34,7 +35,11 @@ const SignInForm = (props: SignInFormProps) => {
 
             <BottomButton 
                 title='로그인'
-                onPress={props.onPress}
+                onPress={props.onLogin}
+            />
+            <BottomButton 
+                title='회원가입'
+                onPress={props.onSignUp}
             />
         </View>
     );

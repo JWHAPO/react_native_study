@@ -21,7 +21,7 @@ import SignIn from './scr/components/pages/SignIn';
 import SignUp from './scr/components/pages/SignUp';
 import UserInfo from './scr/components/pages/UserInfo';
 
-type RootStackParamList = {
+export type RootStackParamList = {
   Home: undefined;
   SignIn: undefined;
   SignUp: undefined;

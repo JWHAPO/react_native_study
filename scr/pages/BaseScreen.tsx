@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import SignIn from '../components/pages/SignIn';
 import {
@@ -11,8 +11,6 @@ const BaseScreen = () => {
         <View>
             <SignIn></SignIn>
         </View>
-
-
     );
 }
 

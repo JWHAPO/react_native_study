@@ -8,38 +8,19 @@ import { RootState } from '../../../modules/redux/RootReducer';
 import {
     Alert
 } from 'react-native';
-
-
-const [id, setId] = useState('');
-const [pwd, setPwd] = useState('');
+import { RootStackParamList } from '../../../App';
 
 const alertMsg = (title: string, description: string) =>
     Alert.alert(title, description, [
         { text: 'OK', onPress: () => console.log('OK Pressed') },
     ]);
 
-function login() {
-    const userInfo = useSelector((state: RootState) => state.user);
-    let userId = userInfo.id;
-    let userPw = userInfo.pwd;
-
-    const navigation = useNavigation<NativeStackNavigationProp<StackParamList>>();
-
-    if (userId == id && userPw == pwd) {
-        //login 성공
-        navigation.navigate('UserInfo');
-    } else {
-        //login 실패
-        alertMsg('로그인', '실패');
-    }
-
-}
-
-export type StackParamList = {
-    UserInfo: undefined
-};
-
 const SignIn = () => {
+
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+    const userInfo = useSelector((state: RootState) => state.user);
+    const [id, setId] = useState('');
+    const [pwd, setPwd] = useState('');
 
     return (
         <SignInTemp
@@ -49,8 +30,18 @@ const SignIn = () => {
             pwdChange={(text) => {
                 setPwd(text);
             }}
-            onPress={() => {
-                login();
+            onLogin={() => {
+                
+                if (userInfo.id == id && userInfo.pwd == pwd) {
+                    //login 성공
+                    navigation.navigate('UserInfo');
+                } else {
+                    //login 실패
+                    alertMsg('로그인', '실패 - '+userInfo.id+", "+userInfo.pwd);
+                }
+            }}
+            onSignUp={() => {
+                navigation.navigate('SignUp');
             }}
         />
     )
